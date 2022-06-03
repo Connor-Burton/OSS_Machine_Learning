@@ -14,35 +14,39 @@ This data includes a range of potential prediction variables. In total,
 the data contains:
 
 ``` r
-col_desc
+library(tidyverse)
 ```
 
-    ##       columns             
-    ##  [1,] "id:"               
-    ##  [2,] "gender:"           
-    ##  [3,] "age:"              
-    ##  [4,] "hypertension:"     
-    ##  [5,] "heart_disease:"    
-    ##  [6,] "ever_married:"     
-    ##  [7,] "work_type:"        
-    ##  [8,] "Residence_type:"   
-    ##  [9,] "avg_glucose_level:"
-    ## [10,] "bmi:"              
-    ## [11,] "smoking_status:"   
-    ## [12,] "stroke:"           
-    ##       description                                                                 
-    ##  [1,] "Unique identifier for each patient"                                        
-    ##  [2,] "The gender of the observation"                                             
-    ##  [3,] "The age at time of measurement"                                            
-    ##  [4,] "Binary indicator for presence of hypertension"                             
-    ##  [5,] "Binary indicator for presence of heart disease"                            
-    ##  [6,] "Binary indicator for if the observation had married by time of measurement"
-    ##  [7,] "Category of work, such as 'Govt_job' or 'private'"                         
-    ##  [8,] "If the observation lived in a rural or urban area"                         
-    ##  [9,] "The average level of glucose in the the blood of the patient"              
-    ## [10,] "Body mass index"                                                           
-    ## [11,] "Categories of smoking behavior, such as 'smokes' or 'never smoked'"        
-    ## [12,] "Binary indicator of stroke happenstance"
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+
+    ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+    ## ✔ tibble  3.1.7     ✔ dplyr   1.0.8
+    ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+    ## ✔ readr   2.1.2     ✔ forcats 0.5.1
+
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+
+``` r
+tibble(col_desc)
+```
+
+    ## # A tibble: 12 × 2
+    ##    columns            description                                               
+    ##    <chr>              <chr>                                                     
+    ##  1 id:                Unique identifier for each patient                        
+    ##  2 gender:            The gender of the observation                             
+    ##  3 age:               The age at time of measurement                            
+    ##  4 hypertension:      Binary indicator for presence of hypertension             
+    ##  5 heart_disease:     Binary indicator for presence of heart disease            
+    ##  6 ever_married:      Binary indicator for if the observation had married by ti…
+    ##  7 work_type:         Category of work, such as 'Govt_job' or 'private'         
+    ##  8 Residence_type:    If the observation lived in a rural or urban area         
+    ##  9 avg_glucose_level: The average level of glucose in the the blood of the pati…
+    ## 10 bmi:               Body mass index                                           
+    ## 11 smoking_status:    Categories of smoking behavior, such as 'smokes' or 'neve…
+    ## 12 stroke:            Binary indicator of stroke happenstance
 
 ## 1. Data Input and Visualization
 
@@ -53,7 +57,7 @@ distribution of the outcome variable (primarily).
 
 ``` r
 #Loading packages
-library(tidyverse)
+
 library(tidymodels)
 library(rpart)
 library(rpart.plot)
@@ -425,7 +429,7 @@ test_wf_boosted =
   fit(data=test)
 ```
 
-    ## [00:48:33] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+    ## [01:11:31] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 
 ``` r
 #Predicting new data with trained model

@@ -33,11 +33,12 @@ description = c("Unique identifier for each patient",
          "Categories of smoking behavior, such as 'smokes' or 'never smoked'",
          "Binary indicator of stroke happenstance"
          )
-col_desc = cbind(columns, description)
+col_desc = cbind(columns, description) |> as.data.frame()
 ```
 
-```{r}
-col_desc
+```{r, warning = FALSE}
+library(tidyverse)
+tibble(col_desc)
 ```
 
 ## 1. Data Input and Visualization
@@ -46,7 +47,7 @@ The first step to a machine learning project is to load up the necessary R packa
 
 ```{r, warning = FALSE, message = FALSE}
 #Loading packages
-library(tidyverse)
+
 library(tidymodels)
 library(rpart)
 library(rpart.plot)
