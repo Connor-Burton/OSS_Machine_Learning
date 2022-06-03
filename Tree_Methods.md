@@ -13,6 +13,37 @@ available Kaggle data. Data is available
 This data includes a range of potential prediction variables. In total,
 the data contains:
 
+``` r
+col_desc
+```
+
+    ##       columns             
+    ##  [1,] "id:"               
+    ##  [2,] "gender:"           
+    ##  [3,] "age:"              
+    ##  [4,] "hypertension:"     
+    ##  [5,] "heart_disease:"    
+    ##  [6,] "ever_married:"     
+    ##  [7,] "work_type:"        
+    ##  [8,] "Residence_type:"   
+    ##  [9,] "avg_glucose_level:"
+    ## [10,] "bmi:"              
+    ## [11,] "smoking_status:"   
+    ## [12,] "stroke:"           
+    ##       description                                                                 
+    ##  [1,] "Unique identifier for each patient"                                        
+    ##  [2,] "The gender of the observation"                                             
+    ##  [3,] "The age at time of measurement"                                            
+    ##  [4,] "Binary indicator for presence of hypertension"                             
+    ##  [5,] "Binary indicator for presence of heart disease"                            
+    ##  [6,] "Binary indicator for if the observation had married by time of measurement"
+    ##  [7,] "Category of work, such as 'Govt_job' or 'private'"                         
+    ##  [8,] "If the observation lived in a rural or urban area"                         
+    ##  [9,] "The average level of glucose in the the blood of the patient"              
+    ## [10,] "Body mass index"                                                           
+    ## [11,] "Categories of smoking behavior, such as 'smokes' or 'never smoked'"        
+    ## [12,] "Binary indicator of stroke happenstance"
+
 ## 1. Data Input and Visualization
 
 The first step to a machine learning project is to load up the necessary
@@ -47,7 +78,7 @@ ggplot(df) +
   theme_classic()
 ```
 
-![](Tree_Methods_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](Tree_Methods_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 This graph depicts a key concept in machine learning– namely the null
 classifier. This term describes the “score to beat” in that we are
@@ -100,7 +131,7 @@ ggplot(train) +
   theme_classic()
 ```
 
-![](Tree_Methods_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](Tree_Methods_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 #Visuzalizing outcome distribution in testing data
@@ -112,7 +143,7 @@ ggplot(test) +
   theme_classic()
 ```
 
-![](Tree_Methods_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+![](Tree_Methods_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
 
 We will be utilizing the TidyModels galaxy of machine learning
 processes. While this package is not necessarily the fastest way to
@@ -394,7 +425,7 @@ test_wf_boosted =
   fit(data=test)
 ```
 
-    ## [00:38:29] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+    ## [00:48:33] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 
 ``` r
 #Predicting new data with trained model
@@ -407,7 +438,7 @@ test_boosted_out$.pred =test_boosted_out$.pred |> as.factor()
 Boosted_Tree=test_boosted_out |> accuracy(stroke, .pred)
 ```
 
-## 6. Summary Table:
+## 5. Summary Table:
 
 ``` r
 #Prepping graphic of model performance
@@ -440,4 +471,4 @@ tree_var_imp = test_wf_tree |> extract_fit_parsnip()
 tree_var_imp |> vip()
 ```
 
-![](Tree_Methods_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](Tree_Methods_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->

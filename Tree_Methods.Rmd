@@ -34,10 +34,11 @@ description = c("Unique identifier for each patient",
          "Binary indicator of stroke happenstance"
          )
 col_desc = cbind(columns, description)
-col_desc
 ```
 
-
+```{r}
+col_desc
+```
 
 ## 1. Data Input and Visualization
 
@@ -344,7 +345,7 @@ Boosted_Tree=test_boosted_out |> accuracy(stroke, .pred)
 ```
 
 
-## 6. Summary Table:
+## 5. Summary Table:
 ```{r, warning = FALSE, message = FALSE}
 #Prepping graphic of model performance
 acc_graph =rbind(
